@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>FIPE</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Marca do Veículo -->
+  <ion-item>
+    <ion-label>Tipo</ion-label>
+    <ion-select
+      placeholder="Selecione"
+      (ionChange)="consultaMarcasAssincrono($event)"
+    >
+      <ion-select-option value="motos">Motos</ion-select-option>
+      <ion-select-option value="carros">Carros</ion-select-option>
+      <ion-select-option value="caminhoes">Caminhões</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Marcas -->
+  <ion-item>
+    <ion-label>Marcas</ion-label>
+    <ion-select
+      placeholder="Selecione"
+      (ionChange)="consultaModelosAssincrono($event)"
+    >
+      <ion-select-option
+        *ngFor="let item of resultadoMarcas | async"
+        [value]="item.id"
+      >
+        {{ item.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Modelos -->
+  <ion-item>
+    <ion-label>Modelos</ion-label>
+    <ion-select
+      placeholder="Selecione"
+      (ionChange)="consultaVeiculosModeloAssincrono($event)"
+    >
+      <ion-select-option
+        *ngFor="let item of resultadoModelos | async"
+        [value]="item.id"
+      >
+        {{ item.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- <ion-list>
+    <ion-list-header>
+      <ion-label>Modelos</ion-label>
+    </ion-list-header>
+    <ion-item-sliding>
+      <ion-item *ngFor="let item of resultadoModelos | async">
+        <ion-label>{{ item.name }}</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list> -->
+
+  <!-- Modelos/Anos -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Modelos/Ano</ion-label>
+    </ion-list-header>
+    <ion-item-sliding>
+      <ion-item *ngFor="let item of resultadoVeiculosModelo | async" [routerLink]="['/', 'fipe-detalhe', item.id]" >
+        <ion-label>{{ item.name }} - {{ item.veiculo }}</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
