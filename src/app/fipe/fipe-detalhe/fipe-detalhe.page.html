@@ -1,12 +1,31 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="/fipe"></ion-back-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/fipe"></ion-back-button>
+    </ion-buttons>
     <ion-title>FIPE - Ficha Detalhada</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding ion-text-center">
+  <ion-card *ngIf="carro">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-label>{{ carro.name }}</ion-label>
+      </ion-card-title>
+      <ion-card-subtitle>
+          KEY: {{ carro.key }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>Fipe-Codigo: {{ carro.fipe_codigo }} </ion-item>
+      <ion-item>Ano: {{ carro.ano_modelo }} </ion-item>
+      <ion-item>Marca: {{ carro.marca }} </ion-item>
+      <ion-item>Combustível: {{ carro.combustivel }} </ion-item>
+      <ion-item>Referência: {{ carro.referencia }} </ion-item>
+      <ion-item>Preço: {{ carro.preco }} </ion-item>
+    </ion-card-content>
+  </ion-card>
 
+  <ion-button shape="round" expand="block" [routerLink]="['/fipe']" >Nova Consulta</ion-button>
 </ion-content>

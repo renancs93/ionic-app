@@ -70,7 +70,7 @@
       <ion-label>Modelos/Ano</ion-label>
     </ion-list-header>
     <ion-item-sliding>
-      <ion-item *ngFor="let item of resultadoVeiculosModelo | async" [routerLink]="['/', 'fipe-detalhe', item.id]" >
+      <ion-item detail *ngFor="let item of resultadoVeiculosModelo | async" (click)="setParams(item.id)" >
         <ion-label>{{ item.name }} - {{ item.veiculo }}</ion-label>
       </ion-item>
     </ion-item-sliding>

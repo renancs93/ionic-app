@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FipeService } from '../fipe.service';
-import { FipePage } from '../fipe.page';
+import { Carro } from '../carro.model';
 
 @Component({
   selector: 'app-fipe-detalhe',
@@ -11,27 +11,33 @@ import { FipePage } from '../fipe.page';
 export class FipeDetalhePage implements OnInit {
 
   // Variavel com os dados completos do veiculo
-  veiculo = null;
+  carro: Carro;
 
-  constructor(private activatedRoute: ActivatedRoute, private fipeService: FipeService, private fipePage: FipePage) { }
+  constructor(private activatedRoute: ActivatedRoute, private fipeService: FipeService) { }
 
   ngOnInit() {
 
     // pega o id da rota
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    const tipo = this.activatedRoute.snapshot.paramMap.get('tipo');
+    const keyMarca = this.activatedRoute.snapshot.paramMap.get('keyMarca');
+    const keyModelo = this.activatedRoute.snapshot.paramMap.get('keyModelo');
+    const keyId = this.activatedRoute.snapshot.paramMap.get('keyId');
 
-    const tipo = this.fipePage.termoBuscaTipo;
-    console.log(tipo);
+    console.log("Tipo:", tipo);
+    console.log("KeyMarca:", keyMarca);
+    console.log("KeyModelo:", keyModelo);
+    console.log("KeyID:", keyId);
 
     // busca na API os dados do id
-    this.consultaVeiculoFichaAssincrono(id);
+    this.consultaVeiculoFichaAssincrono(tipo, keyMarca, keyModelo, keyId);
 
   }
 
-  consultaVeiculoFichaAssincrono(id: string) {
-    this.fipeService.consultaVeiculoFichaDetalhada('carros', '21', '4828', '2013-1' /*id*/).subscribe(result => {
-      this.veiculo = result;
-      console.log(this.veiculo);
+  async consultaVeiculoFichaAssincrono(tipo: string, keyMarca: string, keyModelo: string, keyId: string) {
+  
+    await this.fipeService.consultaVeiculoFichaDetalhada(tipo, keyMarca, keyModelo, keyId).subscribe(result => {
+      this.carro = result;
+      console.log("CARRO: ", this.carro);
     });
   }
 

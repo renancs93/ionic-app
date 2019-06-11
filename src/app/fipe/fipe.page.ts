@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FipeService } from './fipe.service';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fipe',
@@ -20,7 +22,7 @@ export class FipePage implements OnInit {
   termoBuscaVeiculoModelo: string;
   termoBuscaVeiculoFicha: string;
 
-  constructor(private fipeService: FipeService) { }
+  constructor(public navCtl: NavController, private fipeService: FipeService, private router: Router) { }
 
   ngOnInit() {
 
@@ -46,12 +48,19 @@ export class FipePage implements OnInit {
     );
   }
 
-  getParams(event){
-    this.termoBuscaVeiculoFicha = event.target.value;
+  setParams(itemId) {
+    //this.termoBuscaVeiculoFicha = event.target.value;
 
-    console.log(event);
-    console.log(this.termoBuscaVeiculoFicha);
+
+    this.navCtl.navigateForward(['./fipe-detalhe', {
+      keyId: itemId,
+      tipo: this.termoBuscaTipo,
+      keyMarca: this.termoBuscaVeiculos,
+      keyModelo: this.termoBuscaVeiculoModelo
+    }]);
+
   }
+
 
 
 }

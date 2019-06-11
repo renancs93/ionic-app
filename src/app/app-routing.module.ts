@@ -9,17 +9,18 @@ const routes: Routes = [
   },
   {
     path: 'receita',
-    children: [
-      {
-        path: '',
-        loadChildren: './receita/receita.module#ReceitaPageModule'
-      },
-      {
-        path: ':receitaId',
-        loadChildren:
-          './receita/receita-detalhe/receita-detalhe.module#ReceitaDetalhePageModule'
-      }
-    ]
+    children:
+      [
+        {
+          path: '',
+          loadChildren: './receita/receita.module#ReceitaPageModule'
+        },
+        {
+          path: ':receitaId',
+          loadChildren:
+            './receita/receita-detalhe/receita-detalhe.module#ReceitaDetalhePageModule'
+        }
+      ]
   },
   {
     path: 'home',
@@ -39,9 +40,8 @@ const routes: Routes = [
     loadChildren: './fipe/fipe.module#FipePageModule'
   },
   {
-    path: 'fipe-detalhe/:id',
-    loadChildren:
-      './fipe/fipe-detalhe/fipe-detalhe.module#FipeDetalhePageModule'
+    path: 'fipe-detalhe',
+    loadChildren: './fipe/fipe-detalhe/fipe-detalhe.module#FipeDetalhePageModule'
   }
 ];
 
