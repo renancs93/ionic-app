@@ -42,7 +42,9 @@ const routes: Routes = [
   {
     path: 'fipe-detalhe',
     loadChildren: './fipe/fipe-detalhe/fipe-detalhe.module#FipeDetalhePageModule'
-  }
+  },
+  { path: 'stars-wars', loadChildren: './stars-wars/stars-wars.module#StarsWarsPageModule' },
+  { path: 'stars-wars-detalhes', loadChildren: './stars-wars/stars-wars-detalhes/stars-wars-detalhes.module#StarsWarsDetalhesPageModule' }
 ];
 
 @NgModule({

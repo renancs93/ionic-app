@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Stars Wars</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of pessoas">
+      <ion-label text-wrap>
+        <h3>{{ item.name }}</h3>
+      </ion-label>
+      <ion-button color="danger" (click)="deletePessoaByName(item.name)"
+        >X</ion-button
+      >
+    </ion-item>
+  </ion-list>
+</ion-content>
